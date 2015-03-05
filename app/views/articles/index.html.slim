@@ -1,0 +1,48 @@
+- @articles = Article.all.order(published_at: :desc).order(:title)
+//quando chama o 'order' o 'all' já está implícito,
+//então pode-se omiti-lo
+
+//.limit() = limitar a quantidade de itens que o controler deve trazer do banco
+
+//Filtrar exibição de campos
+//Article.where(category_id: 1)
+
+//p = l Date.today
+//p = Time.now
+//p = Date.today - 2.weeks
+//p = 2.days.ago
+//p = 3.weeks.from_now
+
+//.where(published_at: 1.week.ago) 
+//------ Vai buscar os artigos exatamente de uma semana atrás
+
+//-----------Trazer artigos que a data de publicação seja maior que uma semana atrás
+//- @articles = Article.where('published_at > ?', 1.week.ago)
+
+h1 Artigos
+
+table.table.table-striped
+  thead
+    tr
+      th Nome
+      th Publicado em
+      th Categoria
+      th
+
+  tbody
+    - @articles.each do |article|
+      tr
+        td = article.title
+        td = l article.published_at, format: :short
+        td = article.category.name
+        //td = article.category.try(:name)
+        //Caso possa haver itens sem categoria
+        td
+          .btn-group.pull-right
+            = link_to 'Ver', article, class: 'btn btn-default btn-sm'
+            = link_to 'Editar', edit_article_path(article), class: 'btn btn-default btn-sm'
+            = link_to 'Excluir', article, data: {:confirm => 'Tem certeza que deseja excluir esta item?'}, :method => :delete, class: 'btn btn-default btn-sm'
+
+br
+
+= link_to 'Cadastrar artigo', new_article_path, class: 'btn btn-primary'

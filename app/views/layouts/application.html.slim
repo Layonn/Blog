@@ -1,0 +1,38 @@
+doctype html
+html
+  head
+  	meta name="viewport" content="width=device-width, initial-scale=1"
+    title Blog
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+
+     /[if lt IE 9]
+	  = javascript_include_tag 'html5shiv', 'data-turbolinks-track' => true
+	  = javascript_include_tag 'respond', 'data-turbolinks-track' => true
+      
+  body
+	.navbar.navbar-inverse.navbar-fixed-top
+      .container
+        .navbar-header
+          button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          /</button>
+          a.navbar-brand href="/articles" Sailor Baby
+        /</div>
+        div#navbar.collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li.active
+            	a href="/articles" Produtos
+          	li
+            	a href="/categories" Categorias
+        /</div><!--/.nav-collapse -->
+      /</div> container
+    /</nav>
+
+	.container
+    	= yield
+
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true

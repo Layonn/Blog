@@ -1,0 +1,25 @@
+- if notice
+	.alert.alert-warning.alert-dismissible role="alert"
+  		button type="button" class="close" data-dismiss="alert" aria-label="Close"
+  			span aria-hidden="true"&times;
+  			=notice
+
+h1 
+	= @article.title
+	.pull-right
+		= link_to 'Edit', edit_article_path(@article), class: 'btn btn-default'
+hr
+
+p Categoria: <strong> #{@article.category.name}</strong>
+//strong = @article.category.try(:name)
+//Caso possa haver itens sem categoria
+
+
+//model article chamou a associação de category
+//aqui está referenciando ele.
+//referenciando diretamente a relação
+//o category representa a tabela category
+
+/p = l @article.published_at
+p Atualizado <b>#{distance_of_time_in_words_to_now(@article.updated_at)}</b> atrás
+= simple_format @article.body
